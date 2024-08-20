@@ -1,6 +1,6 @@
 import express from "express";
 import colors from "colors";
-import mongooose from "mongoose";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 import { Book } from "./models/bookModel.js";
@@ -10,14 +10,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const url =
-  "mongodb://admin:user%40123@cluster0-shard-00-00.ktx8n.mongodb.net:27017,cluster0-shard-00-01.ktx8n.mongodb.net:27017,cluster0-shard-00-02.ktx8n.mongodb.net:27017/?ssl=true&replicaSet=atlas-8odgjm-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0";
-app.get("/", (req, res) => {
-  res.send("Running successfully");
+const PASSWORD = process.env.MONGO_PASSWORD;
+
+const url = `mongodb+srv://pritishpatra06:${PASSWORD}@cluster0.sxfkg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+  app.get("/", (req, res) => {
+    res.send("Hello World");
+   console.log(PASSWORD)
 });
 
-mongooose
-  .connect(url)
+mongoose
+  .connect(url, )
   .then(() => console.log("MongoDB connected".cyan.bold))
   .catch((err) => console.log(err));
 
