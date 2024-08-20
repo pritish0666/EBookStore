@@ -9,19 +9,26 @@ import cors from "cors";
 const app = express();
 app.use(cors());
 app.use(express.json());
+import path from "path";
 
 const PASSWORD = process.env.MONGO_PASSWORD;
 
 const url = `mongodb+srv://pritishpatra06:${PASSWORD}@cluster0.sxfkg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-  app.get("/", (req, res) => {
-    res.send("Hello World");
-   console.log(PASSWORD)
+app.get("/", (req, res) => {
+  res.send("Hello World");
+  console.log(PASSWORD);
 });
 
 mongoose
-  .connect(url, )
+  .connect(url)
   .then(() => console.log("MongoDB connected".cyan.bold))
   .catch((err) => console.log(err));
+
+app.get("/", (req, res) => {
+  res.send("API is running..");
+});
+
+
 
 app.use("/books", bookRoute);
 
