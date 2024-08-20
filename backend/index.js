@@ -4,7 +4,7 @@ import mongooose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 import { Book } from "./models/bookModel.js";
-import bookRoute from "./routes/bookRoute.js";
+import bookRoute from "./routes/booksRoute.js";
 import cors from "cors";
 const app = express();
 app.use(cors());
@@ -23,6 +23,6 @@ mongooose
 
 app.use("/books", bookRoute);
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000".magenta.bold);
+app.listen(5555, () => {
+  console.log("Server is running on port 5555".magenta.bold);
 });
